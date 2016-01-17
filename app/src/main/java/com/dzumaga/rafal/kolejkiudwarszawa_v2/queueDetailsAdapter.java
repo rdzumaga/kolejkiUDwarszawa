@@ -17,6 +17,12 @@ public class queueDetailsAdapter extends ArrayAdapter<queueDetails> {
     int layoutResourceId;
     queueDetails data[] = null;
 
+    public void setItemList(queueDetailsModelView m)
+    {
+        this.data = m.queueDetailsArrayList.toArray(new queueDetails[m.queueDetailsArrayList.size()]);
+        //notifyDataSetChanged();
+    }
+
     public queueDetailsAdapter(Context context, int layoutResourceId, queueDetails[] data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;

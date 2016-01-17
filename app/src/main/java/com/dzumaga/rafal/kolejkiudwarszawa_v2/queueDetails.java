@@ -12,14 +12,18 @@ public class queueDetails{
         this.code = _code;
     }
 
+    public queueDetails()
+    {}
+
+
     String status;
-    int avgTime;
-    int lp;
-    int groupId;
-    int openedDesks;
+    String avgTime;
+    String lp;
+    String groupId;
+    String openedDesks;
     String name;
     String code;
-    int waitingCount;
-    int currentlyServed;
+    String waitingCount;
+    String currentlyServed;
 
 }

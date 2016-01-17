@@ -36,39 +36,11 @@ public class urzadDetailFragment extends Fragment {
 
     private String url;
 
-    private JSONObject data=null;
-
-    private queueInfo info;
+    queueDetailsAdapter adapter;
 
    private int officeIndex;
 
-    private void getDataFromAPI()
-    {
 
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-
-
-
-        JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.GET, url, null, null, null);
-
-        /*response.getJSONObject("result").getString("date");
-        response.getJSONObject("result").getString("time");
-
-        JSONArray jsonObjArray = response.getJSONObject("result").getJSONArray("grupy");
-
-        for (int i = 0; i < jsonObjArray.length(); i++) {
-            JSONObject singleQueue = jsonObjArray.getJSONObject(i);
-        }
-
-        response.getJSONObject("result").getJSONArray("grupy").getJSONObject(0).getString("czasObslugi");
-
-        data = response.getJSONObject("result");*/
-
-        queue.add(request);
-
-
-
-    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -89,6 +61,10 @@ public class urzadDetailFragment extends Fragment {
             String officeName = new ArrayList(officeContent.officeList.keySet()).get(officeIndex).toString();
             url = (String)values.get(officeIndex);
 
+
+
+
+            setRetainInstance(true);
 
             Activity activity = this.getActivity();
 
@@ -111,11 +87,14 @@ public class urzadDetailFragment extends Fragment {
                         new queueDetails("trzy","t")
                 };
 
-        queueDetailsAdapter adapter = new queueDetailsAdapter(getContext(), R.layout.row, dataX);
+        adapter = new queueDetailsAdapter(getContext(), R.layout.row, dataX);
 
         ListView list = (ListView) rootView.findViewById(R.id.list);
 
         list.setAdapter(adapter);
+
+        (new LoadQueueData(getActivity(), url, adapter)).execute();
+
 
         return rootView;
     }
