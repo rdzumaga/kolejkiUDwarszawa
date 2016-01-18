@@ -24,7 +24,7 @@
         android:id="@+id/list"
         android:name="com.dzumaga.rafal.kolejkiudwarszawa_v2.urzadDetailList"
         android:layout_width="wrap_content"
-        android:layout_height="509dp"
+        android:layout_height="wrap_content"
         app:layoutManager="LinearLayoutManager"
         tools:context="com.dzumaga.rafal.kolejkiudwarszawa_v2.urzadDetailActivity"
         tools:listitem="@layout/row" />

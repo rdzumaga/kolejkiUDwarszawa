@@ -107,10 +107,12 @@ import android.widget.TextView;
 public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapter.QueueHolder> {
 
     public queueDetailsModelView _model;
+    private TextView refreshTextView;
 
-    public queueDetailsAdapter(queueDetailsModelView m)
+    public queueDetailsAdapter(queueDetailsModelView m, TextView refreshParent)
     {
         this._model = m;
+        this.refreshTextView = refreshParent;
     }
 
     @Override
@@ -124,6 +126,7 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
     public void onBindViewHolder(QueueHolder holder, int position) {
         holder.txtCode.setText(_model.queueDetailsArrayList.get(position).code);
         holder.txtGroupName.setText(_model.queueDetailsArrayList.get(position).name);
+        holder.refreshText.setText("Odświeżono: " + _model.updateDate + " " + _model.updateTime);
     }
 
     @Override
@@ -136,12 +139,14 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
         public final View mView;
         public final TextView txtGroupName;
         public final TextView txtCode;
+        public final TextView refreshText;
 
         public QueueHolder(View view) {
             super(view);
             mView = view;
             txtGroupName = (TextView) view.findViewById(R.id.textView3);
             txtCode = (TextView) view.findViewById(R.id.textView4);
+            refreshText = refreshTextView;
         }
 
         @Override
