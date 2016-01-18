@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -80,12 +81,23 @@ public class urzadDetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                fab.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate));
+
+
+
                 Snackbar.make(view, "Odświeżam...", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
 
                 (new LoadQueueData(getActivity(), url, adapter)).execute();
+
+
             }
         });
+
+
+        fab.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate));
 
         (new LoadQueueData(getActivity(), url, adapter)).execute();
 

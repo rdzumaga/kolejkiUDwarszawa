@@ -11,6 +11,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Rafal on 2016-01-17.
@@ -55,6 +57,12 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
 
     @Override
     protected queueDetailsModelView doInBackground(String... params) {
+
+        try {
+            Thread.sleep(1000, 0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         queueDetailsModelView mModelView = new queueDetailsModelView();
 
@@ -103,8 +111,11 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
                 _details.groupId = singleQueue.getString("idGrupy");
                 _details.waitingCount = singleQueue.getString("liczbaKlwKolejce");
 
+
                 mModelView.queueDetailsArrayList.add(_details);
             }
+
+            Collections.sort(mModelView.queueDetailsArrayList, new CustomComparator());
 
             return mModelView;
         }
@@ -113,6 +124,13 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
         }
         return null;
 
+    }
+
+    public class CustomComparator implements Comparator<queueDetails> {
+        @Override
+        public int compare(queueDetails o1, queueDetails o2) {
+            return o1.name.compareTo(o2.name);
+        }
     }
 
 

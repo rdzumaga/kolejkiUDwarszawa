@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 /**
  * An activity representing a single urzad detail screen. This
@@ -19,6 +20,12 @@ public class urzadDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urzad_detail);
+
+        int officeIndexValue = getIntent().getIntExtra(urzadDetailFragment.OFFICE_INDEX, 0);
+        int imageId = officeContent.imageIds.get(officeIndexValue);
+        ImageView img = (ImageView) findViewById(R.id.fotoImage);
+        img.setImageResource(imageId);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,7 +53,7 @@ public class urzadDetailActivity extends AppCompatActivity {
             // using a fragment transaction.
             Bundle arguments = new Bundle();
             arguments.putInt(urzadDetailFragment.OFFICE_INDEX,
-                    getIntent().getIntExtra(urzadDetailFragment.OFFICE_INDEX, 0));
+                    officeIndexValue);
             urzadDetailFragment fragment = new urzadDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

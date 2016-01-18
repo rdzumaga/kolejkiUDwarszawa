@@ -1,5 +1,6 @@
 package com.dzumaga.rafal.kolejkiudwarszawa_v2;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 
@@ -9,6 +10,7 @@ import java.util.LinkedHashMap;
 public class officeContent {
 
     public static LinkedHashMap<String,String> officeList = new LinkedHashMap<>();
+    public static ArrayList<Integer> imageIds = new ArrayList();
 
     static {
         officeList.put("USC Andersa","https://api.um.warszawa.pl/api/action/wsstore_get?id=5d2e698a-9c31-456b-8452-7ce33e7deb94");
@@ -18,6 +20,16 @@ public class officeContent {
         officeList.put("UD Ochota","https://api.um.warszawa.pl/api/action/wsstore_get?id=624d7e2a-bf45-48d6-ba79-8b512e662d1c");
         officeList.put("UD Wola","https://api.um.warszawa.pl/api/action/wsstore_get?id=7ef70889-4eb9-4301-a970-92287db23052");
         officeList.put("UD Żoliborz", "https://api.um.warszawa.pl/api/action/wsstore_get?id=831ef31a-b2a3-4cbb-aaa5-cb90fe05ad8c");
-    };
+    }
+
+    static {
+        imageIds.add(R.drawable.usc_andersa);
+        imageIds.add(R.drawable.usc_falecka);
+        imageIds.add(R.drawable.ud_bialoleka);
+        imageIds.add(R.drawable.ud_bielany);
+        imageIds.add(R.drawable.ud_ochota);
+        imageIds.add(R.drawable.ud_wola);
+        imageIds.add(R.drawable.ud_zoliborz);
+    }
 }
 
