@@ -23,8 +23,10 @@ public class queueDetailsModelView {
         exVal.updateTime = "37";
         exVal.updateDate = "13";
 
-        queueDetails obj = new queueDetails("test1", "test2");
-        exVal.queueDetailsArrayList.add(obj);
+        for (int i = 0; i < 25; i++) {
+            queueDetails obj = new queueDetails("test" + i, "content" + i);
+            exVal.queueDetailsArrayList.add(obj);
+        }
 
         return exVal;
     }

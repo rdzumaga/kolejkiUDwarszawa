@@ -40,8 +40,6 @@ public class urzadListActivity extends AppCompatActivity {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     permission.INTERNET)) {
-
-
         };*/
 
         setContentView(R.layout.activity_urzad_list);

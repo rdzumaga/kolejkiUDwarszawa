@@ -65,11 +65,6 @@ public class urzadDetailFragment extends Fragment {
             appBarLayout.setTitle(officeName);
         }
 
-//        adapter = new queueDetailsAdapter(getContext(), R.layout.row, new ArrayList<queueDetails>(), rootView);
-//
-//        ListView list = (ListView) rootView.findViewById(R.id.list);
-//
-//        list.setAdapter(adapter);
 
         TextView refreshTextViewHolder = (TextView) rootView.findViewById(R.id.refreshText);
 
