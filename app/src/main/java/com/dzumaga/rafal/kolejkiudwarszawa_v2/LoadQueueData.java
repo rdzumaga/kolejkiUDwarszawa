@@ -4,11 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,18 +11,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by Rafal on 2016-01-17.
  */
 public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModelView> {
 
+    private final ProgressDialog dialog;
     Context mContext;
     String mUrl;
     queueDetailsAdapter mAdapter;
-
-    private final ProgressDialog dialog;
 
 
 
@@ -46,8 +39,8 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
     @Override
     protected void onPostExecute(queueDetailsModelView queueDetailses) {
         super.onPostExecute(queueDetailses);
-
-        mAdapter.setItemList(queueDetailses);
+        mAdapter._model = queueDetailses;
+        //mAdapter.setItemList(queueDetailses);
         mAdapter.notifyDataSetChanged();
         dialog.dismiss();
     }

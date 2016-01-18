@@ -18,4 +18,14 @@ public class queueDetailsModelView {
         queueDetailsArrayList = new ArrayList<>();
     }
 
+    static queueDetailsModelView getExample() {
+        queueDetailsModelView exVal = new queueDetailsModelView();
+        exVal.updateTime = "37";
+        exVal.updateDate = "13";
+
+        queueDetails obj = new queueDetails("test1", "test2");
+        exVal.queueDetailsArrayList.add(obj);
+
+        return exVal;
+    }
 }
