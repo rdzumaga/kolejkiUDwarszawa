@@ -3,6 +3,8 @@ package com.dzumaga.rafal.kolejkiudwarszawa_v2;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class urzadDetailFragment extends Fragment {
 
    private int officeIndex;
 
+    FloatingActionButton fab;
 
 
     /**
@@ -61,12 +64,11 @@ public class urzadDetailFragment extends Fragment {
             String officeName = new ArrayList(officeContent.officeList.keySet()).get(officeIndex).toString();
             url = (String)values.get(officeIndex);
 
-
-
-
             setRetainInstance(true);
 
             Activity activity = this.getActivity();
+
+
 
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
@@ -80,21 +82,25 @@ public class urzadDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.urzad_detail, container, false);
 
-        queueDetails dataX[] = new queueDetails[]
-                {
-                  new queueDetails("raz","r"),
-                        new queueDetails("dwa","d"),
-                        new queueDetails("trzy","t")
-                };
 
-        adapter = new queueDetailsAdapter(getContext(), R.layout.row, dataX);
+        adapter = new queueDetailsAdapter(getContext(), R.layout.row, new ArrayList<queueDetails>(), rootView);
 
         ListView list = (ListView) rootView.findViewById(R.id.list);
 
         list.setAdapter(adapter);
 
-        (new LoadQueueData(getActivity(), url, adapter)).execute();
+        fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Odświeżam...", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
 
+                (new LoadQueueData(getActivity(), url, adapter)).execute();
+            }
+        });
+
+        (new LoadQueueData(getActivity(), url, adapter)).execute();
 
         return rootView;
     }

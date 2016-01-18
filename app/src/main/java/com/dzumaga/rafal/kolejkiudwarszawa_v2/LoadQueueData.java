@@ -46,9 +46,10 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
     @Override
     protected void onPostExecute(queueDetailsModelView queueDetailses) {
         super.onPostExecute(queueDetailses);
-        dialog.dismiss();
+
         mAdapter.setItemList(queueDetailses);
         mAdapter.notifyDataSetChanged();
+        dialog.dismiss();
     }
 
     @Override
