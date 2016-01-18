@@ -130,8 +130,6 @@ public class urzadListActivity extends AppCompatActivity {
             public final TextView mIdView;
             public final TextView mContentView;
 
-            //public DummyContent.DummyItem mItem;
-            //public queueInfo queueItem;
 
             public ViewHolder(View view) {
                 super(view);

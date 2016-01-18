@@ -1,6 +1,5 @@
 package com.dzumaga.rafal.kolejkiudwarszawa_v2;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -10,12 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +26,11 @@ public class urzadDetailFragment extends Fragment {
      */
 
     public static final String OFFICE_INDEX = "com.rafal.office_index";
-
-    private List values = new ArrayList (officeContent.officeList.values());
-
-    private String url;
-
     queueDetailsAdapter adapter;
-
-   private int officeIndex;
-
     FloatingActionButton fab;
+    private List values = new ArrayList(officeContent.officeList.values());
+    private String url, officeName;
+    private int officeIndex;
 
 
     /**
@@ -57,23 +45,12 @@ public class urzadDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(OFFICE_INDEX)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             officeIndex = (getArguments().getInt(OFFICE_INDEX));
-            String officeName = new ArrayList(officeContent.officeList.keySet()).get(officeIndex).toString();
+            officeName = new ArrayList(officeContent.officeList.keySet()).get(officeIndex).toString();
             url = (String)values.get(officeIndex);
 
             setRetainInstance(true);
 
-            Activity activity = this.getActivity();
-
-
-
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(officeName);
-            }
         }
     }
 
@@ -82,6 +59,10 @@ public class urzadDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.urzad_detail, container, false);
 
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(officeName);
+        }
 
         adapter = new queueDetailsAdapter(getContext(), R.layout.row, new ArrayList<queueDetails>(), rootView);
 
