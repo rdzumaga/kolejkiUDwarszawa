@@ -31,9 +31,16 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
 
     @Override
     public void onBindViewHolder(QueueHolder holder, int position) {
-        holder.txtCode.setText(_model.queueDetailsArrayList.get(position).code);
-        holder.txtGroupName.setText(_model.queueDetailsArrayList.get(position).name);
+
+        queueDetails currentData = _model.queueDetailsArrayList.get(position);
+
+        holder.txtGroupName.setText(currentData.name);
         holder.refreshText.setText("Odświeżono: " + _model.updateDate + " " + _model.updateTime);
+        holder.txtWaitingCount.setText(currentData.waitingCount);
+        holder.txtOpenedDesks.setText(currentData.openedDesks);
+        holder.txtAverageTime.setText(currentData.avgTime);
+        holder.txtCurrentClient.setText(currentData.currentlyServed);
+        holder.txtStatus.setText(currentData.status);
     }
 
     @Override
@@ -45,20 +52,29 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
 
         public final View mView;
         public final TextView txtGroupName;
-        public final TextView txtCode;
+        public final TextView txtStatus;
+        public final TextView txtAverageTime;
+        public final TextView txtOpenedDesks;
+        public final TextView txtWaitingCount;
+        public final TextView txtCurrentClient;
+
         public final TextView refreshText;
 
         public QueueHolder(View view) {
             super(view);
             mView = view;
-            txtGroupName = (TextView) view.findViewById(R.id.textView3);
-            txtCode = (TextView) view.findViewById(R.id.textView4);
+
             refreshText = refreshTextView;
+
+            txtGroupName = (TextView) view.findViewById(R.id.groupNameTextView);
+            txtCurrentClient = (TextView) view.findViewById(R.id.currentClientTextView);
+            txtStatus = (TextView) view.findViewById(R.id.statusTextView);
+            txtAverageTime = (TextView) view.findViewById(R.id.averageTimeTextView);
+            txtOpenedDesks = (TextView) view.findViewById(R.id.openedDesksTextView);
+            txtWaitingCount = (TextView) view.findViewById(R.id.waitingCountTextView);
+
         }
 
-//        @Override
-//        public String toString() {
-//            return super.toString() + " overriden.";
-//        }
+
     }
 }

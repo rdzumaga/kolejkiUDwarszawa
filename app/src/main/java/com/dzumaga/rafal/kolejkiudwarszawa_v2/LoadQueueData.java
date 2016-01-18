@@ -89,11 +89,17 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
                 queueDetails _details = new queueDetails();
                 _details.name = singleQueue.getString("nazwaGrupy");
                 _details.code = singleQueue.getString("literaGrupy");
-                _details.avgTime = singleQueue.getString("czasObslugi");
+                _details.avgTime = singleQueue.getString("czasObslugi") + " min";
                 _details.currentlyServed = singleQueue.getString("aktualnyNumer");
                 _details.openedDesks = singleQueue.getString("liczbaCzynnychStan");
                 _details.lp = singleQueue.getString("lp");
-                _details.status = singleQueue.getString("status");
+
+                String _tmpStatus = singleQueue.getString("status");
+                if (_tmpStatus == "null")
+                    _tmpStatus = "Nieczynne";
+                _details.status = _tmpStatus;
+
+
                 _details.groupId = singleQueue.getString("idGrupy");
                 _details.waitingCount = singleQueue.getString("liczbaKlwKolejce");
 
