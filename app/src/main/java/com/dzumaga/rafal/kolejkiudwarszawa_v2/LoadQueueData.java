@@ -42,7 +42,6 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
     protected void onPostExecute(queueDetailsModelView queueDetailses) {
         super.onPostExecute(queueDetailses);
         mAdapter._model = queueDetailses;
-        //mAdapter.setItemList(queueDetailses);
         mAdapter.notifyDataSetChanged();
         dialog.dismiss();
     }
@@ -101,13 +100,7 @@ public class LoadQueueData extends AsyncTask<String, Integer , queueDetailsModel
                 _details.currentlyServed = singleQueue.getString("aktualnyNumer");
                 _details.openedDesks = singleQueue.getString("liczbaCzynnychStan");
                 _details.lp = singleQueue.getString("lp");
-
-                String _tmpStatus = singleQueue.getString("status");
-                if (_tmpStatus == "null")
-                    _tmpStatus = "Nieczynne";
-                _details.status = _tmpStatus;
-
-
+                _details.status = singleQueue.getString("status");
                 _details.groupId = singleQueue.getString("idGrupy");
                 _details.waitingCount = singleQueue.getString("liczbaKlwKolejce");
 

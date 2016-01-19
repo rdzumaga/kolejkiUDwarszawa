@@ -40,7 +40,7 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
         holder.txtOpenedDesks.setText(currentData.openedDesks);
         holder.txtAverageTime.setText(currentData.avgTime);
         holder.txtCurrentClient.setText(currentData.currentlyServed);
-        holder.txtStatus.setText(currentData.status);
+//        holder.txtStatus.setText(currentData.status);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
 
         public final View mView;
         public final TextView txtGroupName;
-        public final TextView txtStatus;
+        //        public final TextView txtStatus;
         public final TextView txtAverageTime;
         public final TextView txtOpenedDesks;
         public final TextView txtWaitingCount;
@@ -68,7 +68,7 @@ public class queueDetailsAdapter extends RecyclerView.Adapter<queueDetailsAdapte
 
             txtGroupName = (TextView) view.findViewById(R.id.groupNameTextView);
             txtCurrentClient = (TextView) view.findViewById(R.id.currentClientTextView);
-            txtStatus = (TextView) view.findViewById(R.id.statusTextView);
+//            txtStatus = (TextView) view.findViewById(R.id.statusTextView);
             txtAverageTime = (TextView) view.findViewById(R.id.averageTimeTextView);
             txtOpenedDesks = (TextView) view.findViewById(R.id.openedDesksTextView);
             txtWaitingCount = (TextView) view.findViewById(R.id.waitingCountTextView);
